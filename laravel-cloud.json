@@ -1,0 +1,30 @@
+{
+    "name": "arenoexpress",
+    "type": "laravel",
+    "build": {
+        "steps": [
+            "composer install --no-dev --optimize-autoloader",
+            "php artisan config:cache",
+            "php artisan route:cache",
+            "php artisan view:cache"
+        ]
+    },
+    "deploy": {
+        "steps": [
+            "php artisan migrate --force",
+            "php artisan storage:link"
+        ]
+    },
+    "environments": {
+        "main": {
+            "variables": {
+                "APP_ENV": "production",
+                "APP_DEBUG": "false",
+                "LOG_CHANNEL": "stack",
+                "CACHE_DRIVER": "file",
+                "SESSION_DRIVER": "file",
+                "QUEUE_CONNECTION": "sync"
+            }
+        }
+    }
+} 
